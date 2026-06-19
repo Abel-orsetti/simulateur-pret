@@ -1,0 +1,11 @@
+https://simulateur-pret-j3h1.onrender.com
+
+
+
+mot de passe base de donnée spabase : KvOW3Lvx4LN2Sl8u
+
+
+
+
+
+url base de donnée : postgresql://postgres:KvOW3Lvx4LN2Sl8u@db.whuvhryjjoxwwwqspczg.supabase...

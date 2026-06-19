@@ -5,11 +5,15 @@ import os
 import random
 import bcrypt
 from dotenv import load_dotenv
+import psycopg2
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 print("CHEMIN DB :", os.path.abspath("database.db"))
 app = Flask(__name__)
 
-load_dotenv()
+
 app.secret_key = os.getenv("SECRET_KEY")
 
 """
@@ -17,18 +21,36 @@ sert à sécuriser les sessions, c'est une clé secrète utilisée pour signer l
 """
 
 def init_db():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    sql_path = os.path.join(base_dir, "compte.sql")
-
-    with open(sql_path, "r", encoding="utf-8") as file:
-        sql = file.read()
-
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
     cursor = conn.cursor()
-    cursor.executescript(sql)
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Compte (
+            nom TEXT NOT NULL,
+            prenom TEXT NOT NULL,
+            age INTEGER NOT NULL,
+            username TEXT PRIMARY KEY,
+            mot_de_passe TEXT NOT NULL
+        )
+    """)
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS PretEnregistre (
+            id SERIAL PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            nom_pret TEXT NOT NULL,
+            mensualite REAL NOT NULL,
+            salaire REAL NOT NULL,
+            credit REAL NOT NULL,
+            taux REAL NOT NULL,
+            interets REAL NOT NULL,
+            duree INTEGER NOT NULL,
+            FOREIGN KEY(user_id) REFERENCES Compte(username)
+        )
+    """)
+    
     conn.commit()
     conn.close()
-     
 
 
 
@@ -39,10 +61,11 @@ def verify_password(password, hashed):
     return bcrypt.checkpw(password.encode(), hashed.encode())
 
 def username_exists(username):
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
-    cursor.execute("SELECT 1 FROM Compte WHERE username = ?", (username,))
+    cursor.execute("SELECT 1 FROM Compte WHERE username = %s", (username,))
     result = cursor.fetchone()
 
     conn.close()
@@ -64,12 +87,13 @@ def create_account(nom, prenom, age, username, mot_de_passe):
     if not password_valid(mot_de_passe):
         return "password_invalid"
 
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     cursor.execute("""
         INSERT INTO Compte (nom, prenom, age, username, mot_de_passe)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s)
     """, (nom, prenom, age, username, hash_password(mot_de_passe)))
 
     conn.commit()
@@ -78,15 +102,16 @@ def create_account(nom, prenom, age, username, mot_de_passe):
     return "ok"
 
 def supprimer_compte(username):
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     cursor.execute(
-        "DELETE FROM Compte WHERE username = ?",
+        "DELETE FROM Compte WHERE username = %s",
         (username,)
     )
     cursor.execute("""
-        DELETE FROM PretEnregistre WHERE user_id = ?
+        DELETE FROM PretEnregistre WHERE user_id = %s
     """, (username,))
     print("Rows supprimées :", cursor.rowcount)
     print("Suppression de :", username)
@@ -114,11 +139,12 @@ def login(username, mot_de_passe):
     Fonction pour vérifier les identifiants de connexion. 
     Elle récupère le mot de passe hashé depuis la base de données et le compare avec le mot de passe hashé fourni par l'utilisateur.
     """
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT mot_de_passe FROM Compte WHERE username = ?",
+        "SELECT mot_de_passe FROM Compte WHERE username = %s",
         (username,)
     )
 
@@ -329,13 +355,14 @@ def profil():
 
     username = session["user"]
 
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     cursor.execute("""
         SELECT nom, prenom, age, username, mot_de_passe
         FROM Compte
-        WHERE username = ?
+        WHERE username =%s
     """, (username,))
 
     user = cursor.fetchone()
@@ -589,14 +616,15 @@ def enregistrer_pret():
     pret.taux_pret = taux
     pret.dure_en_annee = duree
 
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
 
     cursor.execute("""
         INSERT INTO PretEnregistre
         (user_id, nom_pret, mensualite,salaire, credit, taux, interets, duree)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """, (username, nom_pret, pret.calcul_mensualite_pret(), salaire, credit, taux, pret.etendue_pret(), duree))
 
     conn.commit()
@@ -611,7 +639,8 @@ def pret_enregistrer():
 
     username = session["user"]
 
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     user_id = username
@@ -619,7 +648,7 @@ def pret_enregistrer():
     cursor.execute("""
         SELECT id, credit, mensualite, salaire, interets, taux, duree, nom_pret
         FROM PretEnregistre
-        WHERE user_id = ?
+        WHERE user_id = %s
     """, (username,))
 
     prets = cursor.fetchall()
@@ -855,12 +884,13 @@ def delete_pret():
     username = session["user"]
     pret_id = request.form["pret_id"]
 
-    conn = sqlite3.connect("database.db")
+    conn = psycopg2.connect(DATABASE_URL)
+
     cursor = conn.cursor()
 
     cursor.execute("""
         DELETE FROM PretEnregistre
-        WHERE id = ? AND user_id = ?
+        WHERE id = %s AND user_id = %s
     """, (pret_id, username))
 
     conn.commit()
@@ -2062,6 +2092,5 @@ def details_comparaison():
 
 
 if __name__ == "__main__":
-    if not os.path.exists("database.db"):
-        init_db()
+    init_db()
     app.run(debug=True)
