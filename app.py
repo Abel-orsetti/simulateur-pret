@@ -878,7 +878,7 @@ def engager_pret():
 
     cursor.execute("""
         UPDATE PretEnregistre
-        SET engage = 1
+        SET engage = TRUE
         WHERE id = %s
     """, (pret_id,))
 
