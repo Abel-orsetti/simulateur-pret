@@ -646,7 +646,7 @@ def pret_enregistrer():
     user_id = username
 
     cursor.execute("""
-        SELECT id, credit, mensualite, salaire, interets, taux, duree, nom_pret
+        SELECT id, credit, mensualite, salaire, interets, taux, duree, nom_pret, engage, mois_rembourses
         FROM PretEnregistre
         WHERE user_id = %s
     """, (username,))
@@ -695,6 +695,42 @@ def pret_enregistrer():
             padding: 10px;
             border-bottom: 1px solid #ddd;
             text-align: center;
+        }
+        .progress-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+
+            background:
+                conic-gradient(
+                    #27ae60 calc(var(--progress) * 1%),
+                    #dddddd 0
+                );
+
+            transform: rotate(-90deg);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-circle::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .progress-circle span {
+            position: relative;
+            z-index: 1;
+            transform: rotate(90deg);
+            font-size: 18px;
+            font-weight: bold;
         }
         </style>
 
@@ -780,6 +816,35 @@ def pret_enregistrer():
                         
 
                     </table>
+                    {% if pret[8] == 0 %}
+                    <form action="/engager_pret" method="post">
+                        <input type="hidden" name="pret_id" value="{{ pret[0] }}">
+                        <button type="submit">
+                            S'engager
+                        </button>
+                    </form>
+                    {% endif %}
+
+                    {% if pret[8] == 1 %}
+
+                    {% set total = pret[6] * 12 %}
+                    {% set progression = (pret[9] / total) * 100 %}
+
+                    <div class="progress-circle"
+                        style="--progress: {{ progression }}">
+                        <span>
+                            {{ pret[9] }}/{{ total }}
+                        </span>
+                    </div>
+
+                    <form action="/valider_mois" method="post">
+                        <input type="hidden" name="pret_id" value="{{ pret[0] }}">
+                        <button type="submit">
+                            Valider un mois
+                        </button>
+                    </form>
+
+                    {% endif %}
 
                 </div>
 
@@ -801,6 +866,55 @@ def pret_enregistrer():
 
         </div>
         """, prets=prets)
+
+
+@app.route("/engager_pret", methods=["POST"])
+def engager_pret():
+
+    pret_id = request.form["pret_id"]
+
+    conn = psycopg2.connect(DATABASE_URL)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE PretEnregistre
+        SET engage = 1
+        WHERE id = %s
+    """, (pret_id,))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/pret_enregistrer")
+
+@app.route("/valider_mois", methods=["POST"])
+def valider_mois():
+
+    pret_id = request.form["pret_id"]
+
+    conn = psycopg2.connect(DATABASE_URL)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT duree, mois_rembourses
+        FROM PretEnregistre
+        WHERE id = %s
+    """, (pret_id,))
+
+    duree, mois = cursor.fetchone()
+
+    if mois < duree * 12:
+        cursor.execute("""
+            UPDATE PretEnregistre
+            SET mois_rembourses = mois_rembourses + 1
+            WHERE id = %s
+        """, (pret_id,))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/pret_enregistrer")
+
 @app.route("/confirm_delete_pret", methods=["GET"])
 def confirm_delete_pret():
     if "user" not in session:

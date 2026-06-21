@@ -17,5 +17,9 @@ CREATE TABLE IF NOT EXISTS PretEnregistre (
     interets REAL NOT NULL,
     duree INTEGER NOT NULL,
     nom_pret TEXT NOT NULL,
+
+    engage INTEGER DEFAULT 0,
+    mois_rembourses INTEGER DEFAULT 0,
+
     FOREIGN KEY(user_id) REFERENCES Compte(username)
 );
