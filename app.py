@@ -480,7 +480,7 @@ def profil():
             top: 20px;
             right: 20px;
             padding: 10px 15px;
-            background: #e74c3c;
+            background: ##b00020;
             color: white;
             border-radius: 8px;
             text-decoration: none;
@@ -490,7 +490,7 @@ def profil():
             <form action="/confirm_delete" method="GET" style="position: fixed; top:20px; left:20px;">
                 <button type="submit" style="
                     padding: 10px 15px;
-                    background: #e74c3c;
+                    background: ##b00020;
                     color: white;
                     border-radius: 8px;
                     border: none;
@@ -981,7 +981,7 @@ def confirm_delete_pret():
         }
 
         .delete-btn {
-            background: #e74c3c;
+            background: ##b00020;
             color: white;
         }
 
