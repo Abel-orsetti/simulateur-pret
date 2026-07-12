@@ -771,21 +771,22 @@ def pret_enregistrer():
 
                         <tr>
                             <td>Crédit</td>
-                            <td>{{ "%.2f"|format(pret[1]) }} €</td>
+                            <td>{{ pret[1]|beaute }} €</td>
                         </tr>
 
                         <tr>
                             <td>Mensualité</td>
-                            <td>{{ "%.2f"|format(pret[2]) }} €</td>
+                            <td>{{ pret[2]|beaute }} €</td>
                         </tr>
-                                  
+
                         <tr>
                             <td>Intérêts</td>
-                            <td>{{ "%.2f"|format(pret[4]) }} €</td>
+                            <td>{{ pret[4]|beaute }} €</td>
                         </tr>
+
                         <tr>
                             <td>Taux</td>
-                            <td>{{ pret[5] }} %</td>
+                            <td>{{ pret[5]|beaute }} %</td>
                         </tr>
 
                         <tr>
@@ -794,7 +795,7 @@ def pret_enregistrer():
                         </tr>
                         <tr>
                             <td>Salaire</td>
-                            <td>{{ "%.2f"|format(pret[3]) }} €</td>
+                            <td>{{ pret[3]|beaute }} €</td>
                         </tr>
                         <a href="/calculer?salaire={{ pret[3] }}&credit={{ pret[1] }}&taux={{ pret[5] }}&duree={{ pret[6] }}"
                             style="
@@ -900,6 +901,13 @@ def pret_enregistrer():
         </div>
         """, prets=prets)
 
+
+@app.template_filter("beaute")
+def beaute(nombre):
+    try:
+        return f"{float(nombre):,.2f}".replace(",", " ").replace(".", ",")
+    except:
+        return nombre
 
 @app.route("/engager_pret", methods=["POST"])
 def engager_pret():
@@ -1805,7 +1813,7 @@ def anticiper_crise():
             </p>
 
             <ul>
-                <li>En période de crise le revenu diminue ~ -30%</li>
+                <li>En période de crise le revenu diminue ~ 30%</li>
             </ul>
 
             <p>
