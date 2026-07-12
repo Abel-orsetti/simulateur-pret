@@ -480,7 +480,7 @@ def profil():
             top: 20px;
             right: 20px;
             padding: 10px 15px;
-            background: ##b00020;
+            background: #b00020;
             color: white;
             border-radius: 8px;
             text-decoration: none;
@@ -490,7 +490,7 @@ def profil():
             <form action="/confirm_delete" method="GET" style="position: fixed; top:20px; left:20px;">
                 <button type="submit" style="
                     padding: 10px 15px;
-                    background: ##b00020;
+                    background: #b00020;
                     color: white;
                     border-radius: 8px;
                     border: none;
@@ -801,7 +801,7 @@ def pret_enregistrer():
                                     display: inline-block;
                                     margin-right: 100px;
                                     padding:8px 12px;
-                                    background:#3498db;
+                                    background:#2c3e50;
                                     color:white;
                                     border-radius:6px;
                                     text-decoration:none;
@@ -831,7 +831,14 @@ def pret_enregistrer():
                     {% if pret[8] == 0 %}
                     <form action="/engager_pret" method="post">
                         <input type="hidden" name="pret_id" value="{{ pret[0] }}">
-                        <button type="submit">
+                        <button type="submit" style="
+                            padding: 8px 12px;
+                            background: #2c3e50;
+                            color: white;
+                            border-radius: 6px;
+                            border: none;
+                            cursor: pointer;
+                        ">
                             S'engager
                         </button>
                     </form>
@@ -981,7 +988,7 @@ def confirm_delete_pret():
         }
 
         .delete-btn {
-            background: ##b00020;
+            background: #b00020;
             color: white;
         }
 
@@ -1077,7 +1084,7 @@ def confirm_deconnect():
         }
 
         .delete-btn {
-            background: #e74c3c;
+            background: #b00020;
             color: white;
         }
 
