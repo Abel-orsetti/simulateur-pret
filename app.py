@@ -732,6 +732,18 @@ def pret_enregistrer():
             font-size: 18px;
             font-weight: bold;
         }
+                                  
+        .reste-payer {
+        margin-top: 15px;
+        padding: 12px;
+        background-color: #f4f6f9;
+        border-left: 5px solid #2c3e50;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+    }
         </style>
 
         <div class="container">
@@ -834,15 +846,29 @@ def pret_enregistrer():
                         style="--progress: {{ progression }}">
                         <span>
                             {{ pret[9] }}/{{ total }}
-                        </span>
+                        </span>  
                     </div>
-
+                    <div class="reste-payer">
+                        💰 Il vous reste à payer :
+                        <br><br>
+                        {{ "%.2f"|format((pret[2] * pret[6] * 12) - (pret[9] * pret[2])) }} €
+                    </div>
+                    <br>
                     <form action="/valider_mois" method="post">
                         <input type="hidden" name="pret_id" value="{{ pret[0] }}">
-                        <button type="submit">
+                        <button type="submit"
+                            style="display: inline-block;
+                            margin-top: 20px;
+                            padding: 10px 20px;
+                            background: #2c3e50;
+                            color: white;
+                            border-radius: 8px;
+                            text-decoration: none;
+                        ">
                             Valider un mois
                         </button>
                     </form>
+                    
 
                     {% endif %}
 
