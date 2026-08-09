@@ -214,6 +214,7 @@ def accueil():
     error = request.args.get("error")
     type_error = request.args.get("type")
     return render_template_string("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -300,6 +301,37 @@ def accueil():
             font-size: 12px;
             color: #999;
         }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
     </style>
     <div class="container">
         <h1>Bienvenue sur ce site</h1>
@@ -374,6 +406,7 @@ def profil():
     nom, prenom, age, username, mot_de_passe = user
     
     return render_template_string("""
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         body {
             font-family: Arial, sans-serif;
@@ -442,6 +475,37 @@ def profil():
         button:hover {
             background: #34495e;
         }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
         </style>
 
         <div class="container">
@@ -480,7 +544,7 @@ def profil():
             top: 20px;
             right: 20px;
             padding: 10px 15px;
-            background: #b00020;
+            background: #e74c3c;
             color: white;
             border-radius: 8px;
             text-decoration: none;
@@ -490,7 +554,7 @@ def profil():
             <form action="/confirm_delete" method="GET" style="position: fixed; top:20px; left:20px;">
                 <button type="submit" style="
                     padding: 10px 15px;
-                    background: #b00020;
+                    background: #e74c3c;
                     color: white;
                     border-radius: 8px;
                     border: none;
@@ -520,8 +584,8 @@ def donner_un_nom():
     duree = int(request.form["duree"])
 
     return render_template_string("""
-                                  
-    <style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
                                   
         body {
             font-family: Arial, sans-serif;
@@ -579,6 +643,37 @@ def donner_un_nom():
 
         button:hover {
             background: #34495e;
+        }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
         }
     </style>
         <div class="container">
@@ -655,6 +750,7 @@ def pret_enregistrer():
     conn.close()
 
     return render_template_string("""
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         body {
             font-family: Arial, sans-serif;
@@ -732,18 +828,37 @@ def pret_enregistrer():
             font-size: 18px;
             font-weight: bold;
         }
-                                  
-        .reste-payer {
-        margin-top: 15px;
-        padding: 12px;
-        background-color: #f4f6f9;
-        border-left: 5px solid #2c3e50;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #2c3e50;
-        text-align: center;
-    }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
         </style>
 
         <div class="container">
@@ -771,22 +886,21 @@ def pret_enregistrer():
 
                         <tr>
                             <td>Crédit</td>
-                            <td>{{ pret[1]|beaute }} €</td>
+                            <td>{{ "%.2f"|format(pret[1]) }} €</td>
                         </tr>
 
                         <tr>
                             <td>Mensualité</td>
-                            <td>{{ pret[2]|beaute }} €</td>
+                            <td>{{ "%.2f"|format(pret[2]) }} €</td>
                         </tr>
-
+                                  
                         <tr>
                             <td>Intérêts</td>
-                            <td>{{ pret[4]|beaute }} €</td>
+                            <td>{{ "%.2f"|format(pret[4]) }} €</td>
                         </tr>
-
                         <tr>
                             <td>Taux</td>
-                            <td>{{ pret[5]|beaute }} %</td>
+                            <td>{{ pret[5] }} %</td>
                         </tr>
 
                         <tr>
@@ -795,14 +909,14 @@ def pret_enregistrer():
                         </tr>
                         <tr>
                             <td>Salaire</td>
-                            <td>{{ pret[3]|beaute }} €</td>
+                            <td>{{ "%.2f"|format(pret[3]) }} €</td>
                         </tr>
                         <a href="/calculer?salaire={{ pret[3] }}&credit={{ pret[1] }}&taux={{ pret[5] }}&duree={{ pret[6] }}"
                             style="
                                     display: inline-block;
                                     margin-right: 100px;
                                     padding:8px 12px;
-                                    background:#2c3e50;
+                                    background:#3498db;
                                     color:white;
                                     border-radius:6px;
                                     text-decoration:none;
@@ -832,14 +946,7 @@ def pret_enregistrer():
                     {% if pret[8] == 0 %}
                     <form action="/engager_pret" method="post">
                         <input type="hidden" name="pret_id" value="{{ pret[0] }}">
-                        <button type="submit" style="
-                            padding: 8px 12px;
-                            background: #2c3e50;
-                            color: white;
-                            border-radius: 6px;
-                            border: none;
-                            cursor: pointer;
-                        ">
+                        <button type="submit">
                             S'engager
                         </button>
                     </form>
@@ -854,29 +961,15 @@ def pret_enregistrer():
                         style="--progress: {{ progression }}">
                         <span>
                             {{ pret[9] }}/{{ total }}
-                        </span>  
+                        </span>
                     </div>
-                    <div class="reste-payer">
-                        💰 Il vous reste à payer :
-                        <br><br>
-                        {{ "%.2f"|format((pret[2] * pret[6] * 12) - (pret[9] * pret[2])) }} €
-                    </div>
-                    <br>
+
                     <form action="/valider_mois" method="post">
                         <input type="hidden" name="pret_id" value="{{ pret[0] }}">
-                        <button type="submit"
-                            style="display: inline-block;
-                            margin-top: 20px;
-                            padding: 10px 20px;
-                            background: #2c3e50;
-                            color: white;
-                            border-radius: 8px;
-                            text-decoration: none;
-                        ">
+                        <button type="submit">
                             Valider un mois
                         </button>
                     </form>
-                    
 
                     {% endif %}
 
@@ -901,13 +994,6 @@ def pret_enregistrer():
         </div>
         """, prets=prets)
 
-
-@app.template_filter("beaute")
-def beaute(nombre):
-    try:
-        return f"{float(nombre):,.2f}".replace(",", " ").replace(".", ",")
-    except:
-        return nombre
 
 @app.route("/engager_pret", methods=["POST"])
 def engager_pret():
@@ -964,176 +1050,7 @@ def confirm_delete_pret():
     pret_id = request.args.get("pret_id")
 
     return render_template_string("""
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background: white;
-            max-width: 500px;
-            margin: 100px auto;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .delete-btn {
-            background: #b00020;
-            color: white;
-        }
-
-        .cancel-btn {
-            background: #2c3e50;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 10px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .btn-group {
-            margin-top: 20px;
-        }
-    </style>
-
-    <div class="container">
-        <h1>Êtes-vous sûr de vouloir supprimer ce prêt ?</h1>
-
-            <form action="/delete_pret" method="post">
-                <input type="hidden" name="pret_id" value="{{ pret_id }}">
-                <button class="delete-btn" type="submit">
-                    Supprimer le prêt
-                </button>
-            </form>
-
-            <a href="/profil" class="cancel-btn">
-                Annuler
-            </a>
-        </div>
-    </div>
-    """,pret_id= pret_id)
-@app.route("/delete_pret", methods=["POST"])
-def delete_pret():
-    if "user" not in session:
-        return redirect("/")
-
-    username = session["user"]
-    pret_id = request.form["pret_id"]
-
-    conn = psycopg2.connect(DATABASE_URL)
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        DELETE FROM PretEnregistre
-        WHERE id = %s AND user_id = %s
-    """, (pret_id, username))
-
-    conn.commit()
-    conn.close()
-
-    return redirect("/pret_enregistrer")
-
-
-@app.route("/confirm_deconnect")
-def confirm_deconnect():
-    if "user" not in session:
-        return redirect("/")
-
-    return render_template_string("""
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background: white;
-            max-width: 500px;
-            margin: 100px auto;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .delete-btn {
-            background: #b00020;
-            color: white;
-        }
-
-        .cancel-btn {
-            background: #2c3e50;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 10px;
-            padding: 10px 15px;
-            border-radius: 8px;
-        }
-
-        .btn-group {
-            margin-top: 20px;
-        }
-    </style>
-
-    <div class="container">
-        <h1>Êtes-vous sûr de vouloir déconnecter votre compte ?</h1>
-
-        <div class="btn-group">
-            <form action="/logout" method="GET" style="display:inline;">
-                <button class="delete-btn" type="submit">
-                    Déconnexion
-                </button>
-            </form>
-
-            <a href="/profil" class="cancel-btn">
-                Annuler
-            </a>
-        </div>
-    </div>
-    """)
-
-@app.route("/confirm_delete", methods=["GET"])
-def confirm_delete():
-    if "user" not in session:
-        return redirect("/")
-
-    return render_template_string("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -1183,6 +1100,271 @@ def confirm_delete():
         .btn-group {
             margin-top: 20px;
         }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
+    </style>
+
+    <div class="container">
+        <h1>Êtes-vous sûr de vouloir supprimer ce prêt ?</h1>
+
+            <form action="/delete_pret" method="post">
+                <input type="hidden" name="pret_id" value="{{ pret_id }}">
+                <button class="delete-btn" type="submit">
+                    Supprimer le prêt
+                </button>
+            </form>
+
+            <a href="/profil" class="cancel-btn">
+                Annuler
+            </a>
+        </div>
+    </div>
+    """,pret_id= pret_id)
+@app.route("/delete_pret", methods=["POST"])
+def delete_pret():
+    if "user" not in session:
+        return redirect("/")
+
+    username = session["user"]
+    pret_id = request.form["pret_id"]
+
+    conn = psycopg2.connect(DATABASE_URL)
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        DELETE FROM PretEnregistre
+        WHERE id = %s AND user_id = %s
+    """, (pret_id, username))
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/pret_enregistrer")
+
+
+@app.route("/confirm_deconnect")
+def confirm_deconnect():
+    if "user" not in session:
+        return redirect("/")
+
+    return render_template_string("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: white;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
+    </style>
+
+    <div class="container">
+        <h1>Êtes-vous sûr de vouloir déconnecter votre compte ?</h1>
+
+        <div class="btn-group">
+            <form action="/logout" method="GET" style="display:inline;">
+                <button class="delete-btn" type="submit">
+                    Déconnexion
+                </button>
+            </form>
+
+            <a href="/profil" class="cancel-btn">
+                Annuler
+            </a>
+        </div>
+    </div>
+    """)
+
+@app.route("/confirm_delete", methods=["GET"])
+def confirm_delete():
+    if "user" not in session:
+        return redirect("/")
+
+    return render_template_string("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: white;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
     </style>
 
     <div class="container">
@@ -1210,6 +1392,7 @@ def home():
     
     username = session["user"]
     return render_template_string("""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -1266,6 +1449,37 @@ def home():
     button:hover {
         background: #34495e;
     }
+    @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
+        }
     </style>
     <div class="container">
         <h1>Bienvenue {{username}} sur le simulateur de prêt</h1>
@@ -1305,6 +1519,7 @@ def calcul_pret():
     choix = int(request.args.get("choix"))
     if choix == 1:
         return render_template_string("""
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         body {
             font-family: Arial, sans-serif;
@@ -1373,6 +1588,37 @@ def calcul_pret():
         button:hover {
             background: #34495e;
         }
+        @media (max-width: 600px) {
+
+                    body {
+                        padding: 15px;
+                    }
+
+                    .container {
+                        width: 100%;
+                        max-width: none;
+                        box-sizing: border-box;
+                        padding: 20px;
+                        margin: 20px auto;
+                    }
+
+                    input,
+                    select,
+                    button {
+                        width: 100%;
+                        box-sizing: border-box;
+                    }
+
+                    table {
+                        font-size: 13px;
+                    }
+
+                    th,
+                    td {
+                        padding: 6px;
+                    }
+
+                }
         </style>
         <form action="/calculer" method="get">
             <Label>Veuillez saisir votre salaire annuel brut :</Label>
@@ -1417,6 +1663,7 @@ def calcul_pret():
     """)
     elif choix == 2:
         return render_template_string("""
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
         body {
             font-family: Arial, sans-serif;
@@ -1484,6 +1731,37 @@ def calcul_pret():
 
         button:hover {
             background: #34495e;
+        }
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 6px;
+            }
+
         }
         </style>
                                 
@@ -1556,6 +1834,7 @@ def resultat_choix1():
     pret.dure_en_annee = duree
 
     return f"""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {{
         font-family: Arial, sans-serif;
@@ -1615,6 +1894,37 @@ def resultat_choix1():
 
     tr:nth-child(even) {{
         background-color: #f2f2f2;
+    }}
+    @media (max-width: 600px) {{
+
+        body {{
+            padding: 15px;
+        }}
+
+        .container {{
+            width: 100%;
+            max-width: none;
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px auto;
+        }}
+
+        input,
+        select,
+        button {{
+            width: 100%;
+            box-sizing: border-box;
+        }}
+
+        table {{
+            font-size: 13px;
+        }}
+
+        th,
+        td {{
+            padding: 6px;
+        }}
+
     }}
     </style>
 
@@ -1750,6 +2060,7 @@ def anticiper_crise():
     pret.dure_en_annee = duree
 
     return f"""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {{
         font-family: Arial, sans-serif;
@@ -1800,6 +2111,37 @@ def anticiper_crise():
     tr:nth-child(even) {{
         background-color: #f2f2f2;
     }}
+    @media (max-width: 600px) {{
+
+        body {{
+            padding: 15px;
+        }}
+
+        .container {{
+            width: 100%;
+            max-width: none;
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px auto;
+        }}
+
+        input,
+        select,
+        button {{
+            width: 100%;
+            box-sizing: border-box;
+        }}
+
+        table {{
+            font-size: 13px;
+        }}
+
+        th,
+        td {{
+            padding: 6px;
+        }}
+
+    }}
     </style>
 
     <div class="container">
@@ -1813,7 +2155,7 @@ def anticiper_crise():
             </p>
 
             <ul>
-                <li>En période de crise le revenu diminue ~ 30%</li>
+                <li>En période de crise le revenu diminue ~ -30%</li>
             </ul>
 
             <p>
@@ -1891,6 +2233,7 @@ def resultat_choix2():
     pret2.taux_pret = taux2 
     pret2.dure_en_annee = duree2
     return f"""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {{
         font-family: Arial;
@@ -1946,6 +2289,37 @@ def resultat_choix2():
         margin-left: auto;
         margin-right: auto;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }}
+    @media (max-width: 600px) {{
+
+        body {{
+            padding: 15px;
+        }}
+
+        .container {{
+            width: 100%;
+            max-width: none;
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px auto;
+        }}
+
+        input,
+        select,
+        button {{
+            width: 100%;
+            box-sizing: border-box;
+        }}
+
+        table {{
+            font-size: 13px;
+        }}
+
+        th,
+        td {{
+            padding: 6px;
+        }}
+
     }}
     </style>
 
@@ -2082,6 +2456,7 @@ def details_comparaison():
     pret2.taux_pret = taux2
     pret2.dure_en_annee = duree2
     return f"""
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {{
         font-family: Arial, sans-serif;
@@ -2152,6 +2527,37 @@ def details_comparaison():
         margin-left: auto;
         margin-right: auto;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }}
+    @media (max-width: 600px) {{
+
+        body {{
+            padding: 15px;
+        }}
+
+        .container {{
+            width: 100%;
+            max-width: none;
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px auto;
+        }}
+
+        input,
+        select,
+        button {{
+            width: 100%;
+            box-sizing: border-box;
+        }}
+
+        table {{
+            font-size: 13px;
+        }}
+
+        th,
+        td {{
+            padding: 6px;
+        }}
+
     }}
     </style>
 
