@@ -1612,44 +1612,34 @@ def calcul_pret():
         }
         @media (max-width: 600px) {
 
-                    body {
-                        padding: 15px;
-                    }
+            body {
+                padding: 15px;
+            }
 
-                    .container {
-                        width: 100%;
-                        max-width: none;
-                        box-sizing: border-box;
-                        padding: 20px;
-                        margin: 80px auto;
-                    }
+            .container {
+                width: 100%;
+                max-width: none;
+                box-sizing: border-box;
+                padding: 20px;
+                margin: 80px auto 20px auto;
+            }
 
-                    input,
-                    select,
-                    button {
-                        width: 100%;
-                        box-sizing: border-box;
-                    }
+            input,
+            select,
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
 
-                    table {
-                        font-size: 13px;
-                    }
+            table {
+                font-size: 13px;
+            }
 
-                    th,
-                    td {
-                        padding: 6px;
-                    }
-                    a[href="/simulateur"],
-                    a[href="/profil"] {
-                        position: static !important;
-                        display: block;
-                        width: 100%;
-                        box-sizing: border-box;
-                        text-align: center;
-                        margin-top: 15px;
-                    }
-
-                }
+            th,
+            td {
+                padding: 6px;
+            }
+        }
         </style>
         <form action="/calculer" method="get">
             <Label>Veuillez saisir votre salaire annuel brut :</Label>
