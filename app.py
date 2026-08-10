@@ -334,7 +334,7 @@ def accueil():
         }
     </style>
     <div class="container">
-        <h1>Bienvenue sur ce site</h1>
+        <h1>Bienvenue sur ce simulateur</h1>
         <p>Veuillez vous connecter ou créer un compte pour accéder au simulateur de prêt.</p>
         <form action="/register" method="post">
             {% if error and type_error == "username" %}
@@ -1449,7 +1449,7 @@ def home():
     button:hover {
         background: #34495e;
     }
-    @media (max-width: 600px) {
+        @media (max-width: 600px) {
 
             body {
                 padding: 15px;
@@ -1460,7 +1460,7 @@ def home():
                 max-width: none;
                 box-sizing: border-box;
                 padding: 20px;
-                margin: 20px auto;
+                margin: 80px auto 20px auto;
             }
 
             input,
