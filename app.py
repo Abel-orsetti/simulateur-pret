@@ -1639,6 +1639,15 @@ def calcul_pret():
                     td {
                         padding: 6px;
                     }
+                    a[href="/simulateur"],
+                    a[href="/profil"] {
+                        position: static !important;
+                        display: block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        text-align: center;
+                        margin-top: 15px;
+                    }
 
                 }
         </style>
