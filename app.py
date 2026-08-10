@@ -1755,18 +1755,17 @@ def calcul_pret():
         button:hover {
             background: #34495e;
         }
-        @media (max-width: 600px) {
+       @media (max-width: 600px) {
 
             body {
                 padding: 15px;
+                padding-bottom: 80px;
             }
 
-            .container {
+            form {
                 width: 100%;
-                max-width: none;
                 box-sizing: border-box;
-                padding: 20px;
-                margin: 20px auto;
+                margin-top: 80px;
             }
 
             input,
@@ -1785,6 +1784,21 @@ def calcul_pret():
                 padding: 6px;
             }
 
+            /* Profile : reste en haut à droite */
+            a[href="/profil"] {
+                position: fixed !important;
+                top: 20px !important;
+                right: 20px !important;
+                z-index: 1000;
+            }
+
+            /* Retour : reste en bas à gauche */
+            a[href="/simulateur"] {
+                position: fixed !important;
+                bottom: 20px !important;
+                left: 20px !important;
+                z-index: 1000;
+            }
         }
         </style>
                                 
