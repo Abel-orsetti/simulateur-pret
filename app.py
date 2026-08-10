@@ -1757,32 +1757,24 @@ def calcul_pret():
         }
         @media (max-width: 600px) {
 
-
             body {
                 padding: 15px;
             }
+
             h1 {
-            margin-top: 80px;
+                margin-top: 80px;
             }
-
-            .container {
-                width: 100%;
-                max-width: none;
-                box-sizing: border-box;
-                padding: 20px;
-                margin: 20px auto;
-            }
-
 
             .profil {
-                position: absolute;
-                top: 20px;
-                right: 20px;
+                position: absolute !important;
+                top: 20px !important;
+                right: 20px !important;
             }
+
             .retour {
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
+                position: absolute !important;
+                bottom: 20px !important;
+                left: 20px !important;
             }
 
             table {
@@ -1793,7 +1785,6 @@ def calcul_pret():
             td {
                 padding: 6px;
             }
-
         }
         </style>
                                 
@@ -1820,30 +1811,33 @@ def calcul_pret():
             <input name="duree2" type="number" step="1" min="1" required><br><br>
 
             <button type="submit">Comparer</button>
-        <a href="/simulateur" style="
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            text-decoration: none;
-            padding: 10px 20px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-        ">
-            Retour
-        </a>
-        <a href="/profil" style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-        ">
-            Profile
-        </a>
+            </form>
+
+            <a class="retour" href="/simulateur" style="
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                text-decoration: none;
+                padding: 10px 20px;
+                background: #2c3e50;
+                color: white;
+                border-radius: 8px;
+            ">
+                Retour
+            </a>
+
+            <a class="profil" href="/profil" style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 10px 15px;
+                background: #2c3e50;
+                color: white;
+                border-radius: 8px;
+                text-decoration: none;
+            ">
+                Profile
+            </a>
         """)
 
 
