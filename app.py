@@ -1621,7 +1621,7 @@ def calcul_pret():
                         max-width: none;
                         box-sizing: border-box;
                         padding: 20px;
-                        margin: 20px auto;
+                        margin: 80px auto;
                     }
 
                     input,
