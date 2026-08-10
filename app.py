@@ -1772,9 +1772,9 @@ def calcul_pret():
             }
 
             .retour {
-                position: absolute !important;
-                bottom: 20px !important;
-                left: 20px !important;
+                position: static !important;
+                display: inline-block;
+                margin-top: 20px;
             }
 
             table {
