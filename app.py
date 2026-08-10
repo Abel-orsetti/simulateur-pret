@@ -1773,11 +1773,16 @@ def calcul_pret():
                 margin: 20px auto;
             }
 
-            input,
-            select,
-            button {
-                width: 100%;
-                box-sizing: border-box;
+
+            .profil {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            .retour {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
             }
 
             table {
