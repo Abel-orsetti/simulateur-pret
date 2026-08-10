@@ -1757,8 +1757,12 @@ def calcul_pret():
         }
         @media (max-width: 600px) {
 
+
             body {
                 padding: 15px;
+            }
+            h1 {
+            margin-top: 80px;
             }
 
             .container {
