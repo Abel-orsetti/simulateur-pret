@@ -1924,31 +1924,26 @@ def resultat_choix1():
     @media (max-width: 600px) {{
 
         body {{
-            padding: 15px;
+            padding: 10px;
         }}
 
         .container {{
             width: 100%;
             max-width: none;
             box-sizing: border-box;
-            padding: 20px;
-            margin: 20px auto;
-        }}
-
-        input,
-        select,
-        button {{
-            width: 100%;
-            box-sizing: border-box;
+            padding: 15px;
+            margin: 10px 0;
         }}
 
         table {{
-            font-size: 13px;
+            width: 100%;
+            font-size: 11px;
         }}
 
         th,
         td {{
-            padding: 6px;
+            padding: 5px 2px;
+            font-size: 11px;
         }}
 
     }}
