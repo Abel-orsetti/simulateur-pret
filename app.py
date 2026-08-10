@@ -505,6 +505,28 @@ def profil():
                 padding: 6px;
             }
 
+            a[href="/confirm_deconnect"] {
+            position: static !important;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 15px;
+            }
+
+            form[action="/confirm_delete"],
+            form[action="/simulateur"] {
+                position: static !important;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            form[action="/confirm_delete"] button,
+            form[action="/simulateur"] button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
         }
         </style>
 
