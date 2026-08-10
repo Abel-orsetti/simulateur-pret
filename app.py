@@ -1610,53 +1610,38 @@ def calcul_pret():
         button:hover {
             background: #34495e;
         }
-        @media (max-width: 600px) {
+            @media (max-width: 600px) {
 
-            body {
-                padding: 15px;
-                padding-bottom: 80px;
-            }
+                body {
+                    padding: 15px;
+                    padding-bottom: 80px;
+                }
 
-            .container {
-                width: 100%;
-                max-width: none;
-                box-sizing: border-box;
-                padding: 20px;
-                margin: 120px auto 20px auto;
-            }
+                form[action="/calculer"] {
+                    margin-top: 80px;
+                }
 
-            input,
-            select,
-            button {
-                width: 100%;
-                box-sizing: border-box;
-            }
+                input,
+                select,
+                button {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
 
-            table {
-                font-size: 13px;
-            }
+                a[href="/profil"] {
+                    position: fixed !important;
+                    top: 20px !important;
+                    right: 20px !important;
+                    z-index: 1000;
+                }
 
-            th,
-            td {
-                padding: 6px;
+                a[href="/simulateur"] {
+                    position: fixed !important;
+                    bottom: 20px !important;
+                    left: 20px !important;
+                    z-index: 1000;
+                }
             }
-
-            /* Profile : toujours en haut à droite */
-            a[href="/profil"] {
-                position: fixed !important;
-                top: 20px !important;
-                right: 20px !important;
-                z-index: 1000;
-            }
-
-            /* Retour : toujours en bas à gauche */
-            a[href="/simulateur"] {
-                position: fixed !important;
-                bottom: 20px !important;
-                left: 20px !important;
-                z-index: 1000;
-            }
-        }
         </style>
         <form action="/calculer" method="get">
             <Label>Veuillez saisir votre salaire annuel brut :</Label>
