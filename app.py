@@ -1935,7 +1935,7 @@ def resultat_choix1():
             padding: 10px;
         }}
         h1 {{
-            margin-top: 20px;
+            margin-top: 100px;
         }}
 
         .container {{
