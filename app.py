@@ -1500,7 +1500,10 @@ def home():
             td {
                 padding: 6px;
             }
-
+            .profil {
+                position: absolute !important;
+                top: 20px;
+                right: 20px;
         }
     </style>
     <div class="container">
