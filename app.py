@@ -1471,6 +1471,17 @@ def home():
     button:hover {
         background: #34495e;
     }
+
+    .profil {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        background: #2c3e50;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
         @media (max-width: 600px) {
 
             body {
@@ -1520,18 +1531,9 @@ def home():
             <button type="submit">Valider</button>
         </form>
                                   
-            <a href="/profil" style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            ">
-                Profile
-            </a>
+        <a href="/profil" class="profil">
+            Profile
+        </a>
         
         
     </div>
