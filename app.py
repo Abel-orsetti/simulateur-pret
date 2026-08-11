@@ -1929,61 +1929,21 @@ def resultat_choix1():
     tr:nth-child(even) {{
         background-color: #f2f2f2;
     }}
-    .retour {{
-        text-decoration:none;
-        padding:10px 20px;
-        background:#2c3e50;
-        color:white;
-        border-radius:8px;
-    }}
-
-    .enregistrer {{
-        padding:10px 20px;
-        background:#2c3e50;
-        color:white;
-        border-radius:8px;
-        border:none;
-        cursor:pointer;
-    }}
-
     @media (max-width: 600px) {{
 
         body {{
             padding: 10px;
         }}
-
         h1 {{
             margin-top: 80px;
         }}
 
         .container {{
-            position: relative;
             width: 100%;
             max-width: none;
             box-sizing: border-box;
             padding: 15px;
             margin: 10px 0;
-        }}
-
-        .retour {{
-            text-decoration: none;
-            padding: 10px 20px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-        }}
-
-        .enregistrer {{
-            padding: 10px 20px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 20px;
         }}
 
         table {{
@@ -2057,7 +2017,13 @@ def resultat_choix1():
         ">
 
 
-            <a href="/pret?choix=1" class="retour">
+            <a href="/pret?choix=1" style="
+                text-decoration:none;
+                padding:10px 20px;
+                background:#2c3e50;
+                color:white;
+                border-radius:8px;
+            ">
                 Retour
             </a>
 
@@ -2069,7 +2035,14 @@ def resultat_choix1():
                 <input type="hidden" name="duree" value="{duree}">
 
 
-                <button type="submit" classe = "enregistrer" >
+                <button type="submit" style="
+                    padding:10px 20px;
+                    background:#2c3e50;
+                    color:white;
+                    border-radius:8px;
+                    border:none;
+                    cursor:pointer;
+                ">
                     Enregistrer ce prêt
                 </button>
             </form>
